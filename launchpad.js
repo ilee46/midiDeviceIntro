@@ -1,3 +1,4 @@
+letterVal = 0;
 console.log(navigator)
 let device;
 
@@ -33,6 +34,14 @@ function handleInput(input) {
     let velocity = input.data[2];
 
     console.log(`command: ${command}, note: ${note}, velocity: ${velocity}`);
+    if (note == 36) {
+        letterVal++;
+        if (letterVal % 2 == 1) {
+            document.getElementById('beginningString').textContent = "Bye-bye!"
+        } else {
+            document.getElementById('beginningString').textContent = "Hello"
+        }
+    }
     if (note >= 36 && note <= 51) {
         document.body.style.backgroundColor = "yellow"
     }
