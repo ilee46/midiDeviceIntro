@@ -32,6 +32,5 @@ function handleInput(input) {
     let note = input.data[1];
     let velocity = input.data[2];
 
-    let data = input.data;
-    console.log(data);
+    console.log(`command: ${command}, note: ${note}, velocity: ${velocity}`);
 }
