@@ -33,4 +33,16 @@ function handleInput(input) {
     let velocity = input.data[2];
 
     console.log(`command: ${command}, note: ${note}, velocity: ${velocity}`);
+    if (note >= 36 && note <= 51) {
+        document.body.style.backgroundColor = "yellow"
+    }
+    if (note >= 52 && note <= 67) {
+        document.body.style.backgroundColor = "red"
+    }
+    if (note >= 68 && note <= 83) {
+        document.body.style.backgroundColor = "blue"
+    }
+    if (note >= 84 && note <= 99) {
+        document.body.style.backgroundColor = "green"
+    }
 }
