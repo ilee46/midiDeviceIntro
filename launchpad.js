@@ -41,10 +41,21 @@ function handleInput(input) {
     console.log(`command: ${command}, note: ${note}, velocity: ${velocity}`);
     if (velocity > 0) {
         noteOn(note);
+        document.getElementById('beginningString').textContent = "Ouch"
     }
 
     if (velocity == 0) {
         noteOff(note);
+        document.getElementById('beginningString').textContent = "Ah"
+    }
+    if (note >= 36 && note <= 51) {
+        document.body.style.backgroundColor = "cyan"
+    } else if (note >= 52 && note <= 67) {
+        document.body.style.backgroundColor = "red"
+    } else if (note >= 68 && note <= 83) {
+        document.body.style.backgroundColor = "green"
+    } else if (note >= 84 && note <= 99) {
+        document.body.style.backgroundColor = "purple"
     }
 }
 
@@ -54,9 +65,28 @@ function colorM(key, clr) {
 
 function noteOn(note) {
 
-    if (note == 36) {
-        document.getElementById('beginningString').textContent = "Ouch"
-        colorM(note, 104);
+    if (note == 51) {
+        for (val = 36; val < 52; val++) {
+            colorM(val, 78);
+        }
+    }
+
+    if (note == 55) {
+        for (val = 52; val < 68; val++) {
+            colorM(val, 72);
+        }
+    }
+
+    if (note == 80) {
+        for (val = 68; val < 84; val++) {
+            colorM(val, 122);
+        }
+    }
+
+    if (note == 84) {
+        for (val = 84; val < 100; val++) {
+            colorM(val, 81);
+        }
     }
 
 }
@@ -64,8 +94,26 @@ function noteOn(note) {
 function noteOff(note) {
 
     if (note == 36) {
-        document.getElementById('beginningString').textContent = "Bye"
-        colorM(note, 0);
+        for (val = 36; val < 52; val++) {
+            colorM(val, 0);
+        }
     }
-    
+
+    if (note == 64) {
+        for (val = 52; val < 68; val++) {
+            colorM(val, 0);
+        }
+    }
+
+    if (note == 71) {
+        for (val = 68; val < 84; val++) {
+            colorM(val, 0);
+        }
+    }
+
+    if (note == 99) {
+        for (val = 84; val < 100; val++) {
+            colorM(val, 0);
+        }
+    }
 }
