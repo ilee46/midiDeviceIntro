@@ -20,6 +20,11 @@ function success(midiAccess) {
     let inputs = midiAccess.inputs;
     console.log(inputs)
 
+    for (let output of midiAccess.outputs.values()) {
+        device = output
+        console.log('Output device selected', device)
+    }
+
     inputs.forEach((input) => {
         console.log(input);
         input.addEventListener('midimessage', handleInput);
@@ -34,24 +39,33 @@ function handleInput(input) {
     let velocity = input.data[2];
 
     console.log(`command: ${command}, note: ${note}, velocity: ${velocity}`);
+    if (velocity > 0) {
+        noteOn(note);
+    }
+
+    if (velocity == 0) {
+        noteOff(note);
+    }
+}
+
+function colorM(key, clr) {
+    device && device.send([0x90,key,clr]);
+}
+
+function noteOn(note) {
+
     if (note == 36) {
-        letterVal++;
-        if (letterVal % 2 == 1) {
-            document.getElementById('beginningString').textContent = "Bye-bye!"
-        } else {
-            document.getElementById('beginningString').textContent = "Hello"
-        }
+        document.getElementById('beginningString').textContent = "Ouch"
+        colorM(note, 104);
     }
-    if (note >= 36 && note <= 51) {
-        document.body.style.backgroundColor = "yellow"
+
+}
+
+function noteOff(note) {
+
+    if (note == 36) {
+        document.getElementById('beginningString').textContent = "Bye"
+        colorM(note, 0);
     }
-    if (note >= 52 && note <= 67) {
-        document.body.style.backgroundColor = "red"
-    }
-    if (note >= 68 && note <= 83) {
-        document.body.style.backgroundColor = "blue"
-    }
-    if (note >= 84 && note <= 99) {
-        document.body.style.backgroundColor = "green"
-    }
+    
 }
